@@ -72,7 +72,7 @@ const CheckoutForm = () => {
 
     try {
       // Create payment intent on the server
-      const response = await fetch('http://localhost:8000/api/create-payment-intent', {
+      const response = await fetch('https://swimwear-backend.vercel.app/api/create-payment-intent', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
