@@ -76,7 +76,7 @@ const NewArrival: React.FC<Props> = ({ data, start, limit }) => {
                         >
                             {filteredProducts.slice(start, limit).map((prd, index) => (
                                 <SwiperSlide key={index}>
-                                    <Product data={prd} type='grid' />
+                                    {prd && <Product data={prd} type='grid' style='style-1' />}
                                 </SwiperSlide>
                             ))}
                         </Swiper>

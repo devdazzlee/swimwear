@@ -15,10 +15,16 @@ import Instagram from '@/components/Jewelry/Instagram'
 import Brand from '@/components/Home1/Brand'
 import Footer from '@/components/Footer/Footer'
 import ModalNewsletter from '@/components/Modal/ModalNewsletter'
+import ErrorBoundary from '@/components/Other/ErrorBoundary'
 
 export default function HomeJewelry() {
+    // Force client-side rendering to avoid SSR issues
+    if (typeof window === 'undefined') {
+        return null;
+    }
+    
     return (
-        <>
+        <ErrorBoundary>
             <TopNavThree props="style-three bg-white" />
             <div id="header" className='relative w-full'>
                 <MenuJewelry props="bg-white" />
@@ -36,6 +42,6 @@ export default function HomeJewelry() {
             <Brand />
             <Footer />
             <ModalNewsletter />
-        </>
+        </ErrorBoundary>
     )
 }

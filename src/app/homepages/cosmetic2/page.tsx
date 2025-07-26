@@ -17,10 +17,15 @@ import Instagram from '@/components/Cosmetic1/Instagram'
 import Brand from '@/components/Home1/Brand'
 import Footer from '@/components/Footer/Footer'
 import ModalNewsletter from '@/components/Modal/ModalNewsletter'
+import ErrorBoundary from '@/components/Other/ErrorBoundary'
 
 export default function HomeCosmeticTwo() {
+    // Force client-side rendering to avoid SSR issues
+    if (typeof window === 'undefined') {
+        return null;
+    }
     return (
-        <>
+        <ErrorBoundary>
             <TopNavThree props="style-three bg-white" />
             <div id="header" className='w-full relative'>
                 <MenuCosmeticOne props="bg-white" />
@@ -39,6 +44,6 @@ export default function HomeCosmeticTwo() {
             <Brand />
             <Footer />
             <ModalNewsletter />
-        </>
+        </ErrorBoundary>
     )
 }

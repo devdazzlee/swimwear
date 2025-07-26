@@ -15,10 +15,16 @@ import VideoTutorial from '@/components/Cosmetic3/VideoTutorial'
 import Newsletter from '@/components/Cosmetic3/Newsletter'
 import Footer from '@/components/Footer/Footer'
 import ModalNewsletter from '@/components/Modal/ModalNewsletter'
+import ErrorBoundary from '@/components/Other/ErrorBoundary'
 
 export default function HomeCosmeticThree() {
+    // Force client-side rendering to avoid SSR issues
+    if (typeof window === 'undefined') {
+        return null;
+    }
+    
     return (
-        <>
+        <ErrorBoundary>
             <TopNavOne props="style-one bg-black" slogan='New customers save 10% with the code GET10' />
             <div id="header" className='relative w-full'>
                 <MenuCosmeticThree />
@@ -36,6 +42,6 @@ export default function HomeCosmeticThree() {
             <Newsletter props="bg-transparent" />
             <Footer />
             <ModalNewsletter />
-        </>
+        </ErrorBoundary>
     )
 }

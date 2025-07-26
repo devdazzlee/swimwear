@@ -19,7 +19,7 @@ import Rate from '../Other/Rate'
 interface ProductProps {
     data: ProductType
     type: string
-    style: string
+    style?: string
 }
 
 const Product: React.FC<ProductProps> = ({ data, type, style }) => {
@@ -34,6 +34,11 @@ const Product: React.FC<ProductProps> = ({ data, type, style }) => {
     const { openModalCompare } = useModalCompareContext()
     const { openQuickview } = useModalQuickviewContext()
     const router = useRouter()
+
+    // Early return if data is undefined or null
+    if (!data) {
+        return null;
+    }
 
     const handleActiveColor = (item: string) => {
         setActiveColor(item)
@@ -89,8 +94,17 @@ const Product: React.FC<ProductProps> = ({ data, type, style }) => {
         router.push(`/product/default?id=${productId}`);
     };
 
-    let percentSale = Math.floor(100 - ((data.price / data.originPrice) * 100))
-    let percentSold = Math.floor((data.sold / data.quantity) * 100)
+    // Add null checks for price calculations
+    let percentSale = 0;
+    let percentSold = 0;
+    
+    if (data.price && data.originPrice) {
+        percentSale = Math.floor(100 - ((data.price / data.originPrice) * 100))
+    }
+    
+    if (data.sold && data.quantity) {
+        percentSold = Math.floor((data.sold / data.quantity) * 100)
+    }
 
     return (
         <>
@@ -456,8 +470,8 @@ const Product: React.FC<ProductProps> = ({ data, type, style }) => {
                                 </div>
                             )}
                             <div className="product-price-block flex items-center gap-2 flex-wrap mt-1 duration-300 relative z-[1]">
-                                <div className="product-price text-title">${data.price}.00</div>
-                                {percentSale > 0 && (
+                                <div className="product-price text-title">${data.price || 0}.00</div>
+                                {percentSale > 0 && data.originPrice && (
                                     <>
                                         <div className="product-origin-price caption1 text-secondary2"><del>${data.originPrice}.00</del></div>
                                         <div className="product-sale caption1 font-medium bg-green px-3 py-0.5 inline-block rounded-full">
@@ -559,12 +573,14 @@ const Product: React.FC<ProductProps> = ({ data, type, style }) => {
                                         <div className="product-infor max-sm:w-full">
                                             <div onClick={() => handleDetailProduct(data.id)} className="product-name heading6 inline-block duration-300">{data.name}</div>
                                             <div className="product-price-block flex items-center gap-2 flex-wrap mt-2 duration-300 relative z-[1]">
-                                                <div className="product-price text-title">${data.price}.00</div>
-                                                <div className="product-origin-price caption1 text-secondary2"><del>${data.originPrice}.00</del></div>
+                                                <div className="product-price text-title">${data.price || 0}.00</div>
                                                 {data.originPrice && (
-                                                    <div className="product-sale caption1 font-medium bg-green px-3 py-0.5 inline-block rounded-full">
-                                                        -{percentSale}%
-                                                    </div>
+                                                    <>
+                                                        <div className="product-origin-price caption1 text-secondary2"><del>${data.originPrice}.00</del></div>
+                                                        <div className="product-sale caption1 font-medium bg-green px-3 py-0.5 inline-block rounded-full">
+                                                            -{percentSale}%
+                                                        </div>
+                                                    </>
                                                 )}
                                             </div>
                                             {data.variation.length > 0 && data.action === 'add to cart' ? (
@@ -735,7 +751,7 @@ const Product: React.FC<ProductProps> = ({ data, type, style }) => {
                         <div className="flex gap-0.5 mt-1">
                             <Rate currentRate={data.rate} size={16} />
                         </div>
-                        <span className="text-title inline-block mt-1">${data.price}.00</span>
+                        <span className="text-title inline-block mt-1">${data.price || 0}.00</span>
                     </div>
                 </div>
             ) : (

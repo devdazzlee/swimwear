@@ -14,10 +14,16 @@ import Instagram from '@/components/Watch/Instagram'
 import Brand from '@/components/Home6/Brand'
 import Footer from '@/components/Footer/Footer'
 import ModalNewsletter from '@/components/Modal/ModalNewsletter'
+import ErrorBoundary from '@/components/Other/ErrorBoundary'
 
 export default function HomeWatch() {
+    // Force client-side rendering to avoid SSR issues
+    if (typeof window === 'undefined') {
+        return null;
+    }
+    
     return (
-        <>
+        <ErrorBoundary>
             <div className="bg-black style-watch">
                 <TopNavOne props="style-one bg-black" slogan='New customers save 10% with the code GET10' />
                 <div id="header" className='relative w-full'>
@@ -38,6 +44,6 @@ export default function HomeWatch() {
                 </div>
             </div>
             <ModalNewsletter />
-        </>
+        </ErrorBoundary>
     )
 }
