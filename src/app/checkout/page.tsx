@@ -32,7 +32,7 @@ const Checkout = () => {
         <>
             <TopNavOne props="style-one bg-black" slogan="New customers save 10% with the code GET10" />
             <div id="header" className='relative w-full'>
-                <MenuOne props="bg-transparent" />
+                <MenuOne  />
                 <Breadcrumb heading='Shopping cart' subHeading='Shopping cart' />
             </div>
             <div className="cart-block md:py-20 py-10">

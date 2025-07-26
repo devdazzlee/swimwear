@@ -34,7 +34,7 @@ const Compare = () => {
         <>
             <TopNavOne props="style-one bg-black" slogan="New customers save 10% with the code GET10" />
             <div id="header" className='relative w-full'>
-                <MenuOne props="bg-transparent" />
+                <MenuOne  />
                 <Breadcrumb heading='Compare Products' subHeading='Compare Products' />
             </div>
             <div className="compare-block md:py-20 py-10">

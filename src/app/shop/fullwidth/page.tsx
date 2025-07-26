@@ -17,7 +17,7 @@ export default function Fullwidth() {
         <>
             <TopNavOne props="style-one bg-black" slogan="New customers save 10% with the code GET10" />
             <div id="header" className='relative w-full'>
-                <MenuOne props="bg-transparent" />
+                <MenuOne  />
             </div>
             <ShopFilterCanvas data={productData} productPerPage={12} dataType={type} />
             <Footer />

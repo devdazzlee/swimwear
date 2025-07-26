@@ -15,7 +15,7 @@ const AboutUs = () => {
         <>
             <TopNavOne props="style-one bg-black" slogan="New customers save 10% with the code GET10" />
             <div id="header" className='relative w-full'>
-                <MenuOne props="bg-transparent" />
+                <MenuOne  />
                 <Breadcrumb heading='About Us' subHeading='About Us' />
             </div>
             <div className='about md:pt-20 pt-10'>
