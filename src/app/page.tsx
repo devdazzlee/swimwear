@@ -23,7 +23,6 @@ export default function Home() {
         <MenuOne  />
         <SliderOne />
       </div>
-      <WhatNewOne data={productData} start={0} limit={4} />
       <Collection />
       <TabFeatures data={productData} start={0} limit={6} />
       <Banner />

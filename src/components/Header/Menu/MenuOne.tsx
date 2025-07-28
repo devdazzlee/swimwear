@@ -4,16 +4,18 @@ import React from 'react'
 import Link from 'next/link'
 import * as Icon from "@phosphor-icons/react/dist/ssr";
 import { useCart } from '@/context/CartContext';
+import Image from 'next/image';
 
 const MenuOne: React.FC = () => {
     const { cartState } = useCart();
     return (
         <div className="header-menu style-one top-0 left-0 right-0 w-full md:h-[74px] h-[56px]">
             <div className="container mx-auto h-full">
-                <div className="header-main flex justify-between h-full">
+                <div className="header-main flex justify-between h-full my-2">
                     <div className="left flex items-center gap-16">
                         <Link href={'/'} className='flex items-center max-lg:absolute max-lg:left-1/2 max-lg:-translate-x-1/2'>
-                            <div className="heading4">HydroBay</div>
+                            <Image src="/images/New-Images/Logo.png" alt="HydroBay" width={150} height={150} />
+                            {/* <div className="heading4">HydroBay</div> */}
                         </Link>
                         <div className="menu-main h-full max-lg:hidden">
                             <ul className='flex items-center gap-8 h-full'>
